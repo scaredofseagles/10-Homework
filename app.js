@@ -34,7 +34,7 @@ async function main(){
     const manager = new Manager(managerAnswers.name, userId++, managerAnswers.email, managerAnswers.officeNumber, managerAnswers.teamMembers)
     users.push(manager)
 
-    for (let i=0; i<teamMembers; i++){
+    for (let i=0; i<managerAnswers.teamMembers; i++){
         let employeeAnswers = await inquirer.prompt([
             {
                 type: "list",
@@ -62,8 +62,15 @@ async function main(){
         const employee = newEmployee == "Engineer" ? new Engineer(employeeInfo.name, userId++, employeeInfo.email, employeeInfo.account) : new Intern(employeeInfo.name, userId++, employeeInfo.email, employeeInfo.account)
         users.push(employee)
     }
-
+    
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, render(users), "utf-8")
+    console.log(users)
+    
 }
+main()
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
