@@ -54,7 +54,7 @@ async function main(){
                 name: "email"
             },
             {
-                message: `Please the ${newEmployee}'s ${newEmployee=="Engineer" ? 'Github account': 'School'}?`,
+                message: `Please the ${newEmployee}'s ${newEmployee=="Engineer" ? 'Github account': 'School'}`,
                 name: "account"
             }
         ])
